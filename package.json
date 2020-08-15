@@ -1,0 +1,33 @@
+{
+  "name": "stock_admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "start:local": "cross-env NODE_ENV=local nodemon src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-helmet": "^5.2.0",
+    "koa-router": "^9.4.0",
+    "lodash": "^4.17.20",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.4",
+    "xlsx": "^0.16.6"
+  },
+  "nodemonConfig": {
+    "ext": "js",
+    "restartable": "rs",
+    "verbose": true,
+    "ignore": [
+      "node_modules/**"
+    ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
+}
