@@ -1,6 +1,6 @@
 # Stock Admin
 
-> 预览地址: https://www.xukz.com(https://www.xukz.com)
+> 测试地址: [https://code.xukz.com](https://code.xukz.com)
 
 ## 介绍
 
@@ -31,12 +31,12 @@ npm run start:local
 
 - import stock
 ```
-node test/import_stock.js resource/t_score_rating_test.xlsx
+node runjob/import_stock.js resource/t_score_rating_test.xlsx
 ```
 
 - import finance
 ```
-node test/import_finance.js resource/t_finance_guide.xlsx
+node runjob/import_finance.js resource/t_finance_guide.xlsx
 ```
 
 ## 接口
