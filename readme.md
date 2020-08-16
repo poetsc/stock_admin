@@ -1,6 +1,6 @@
 # Stock Admin
 
-> 测试地址: [https://code.xukz.com](https://code.xukz.com)
+> 预览地址: [https://code.xukz.cn](https://code.xukz.cn)
 
 ## 介绍
 
@@ -81,7 +81,6 @@ node runjob/import_finance.js resource/t_finance_guide.xlsx
 ```
 
 ## TODO
-- 接口参数日志
 - 路由改造成统一文件
 - 接口参数校验
 - 单元测试
