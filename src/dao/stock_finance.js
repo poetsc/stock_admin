@@ -1,6 +1,7 @@
 'use strict'
 
 const _ = require('lodash');
+const moment = require('moment');
 const {
     Op
 } = require("sequelize");
@@ -64,6 +65,7 @@ class FinanceDAO {
                 },
             ],
             where: condition,
+            order: ['stock_id'],
             offset: parseInt(offset)
         }
 
@@ -84,6 +86,7 @@ class FinanceDAO {
         _.get(retData, 'rows', []).forEach(elem => {
             let row = elem.toJSON();
             row = _.assign({}, _.get(row, 'stock_info', {}), row);
+            row.report_year = row.report_year ? moment(row.report_year).format('YYYY-MM-DD HH:mm:ss') : row.report_year;
             _.unset(row, 'stock_info');
             data.list.push(row);
         });

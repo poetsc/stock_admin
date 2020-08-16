@@ -11,6 +11,7 @@ class StockFinance {
 
     async fn_finance_display(ctx, next) {
         try {
+            console.info('StockFinance|fn_finance_display|req ',JSON.stringify(ctx.request,null,4))
             const query = _.assignIn({}, ctx.request.body);
             const ret = await finance_display(query);
             const packdata = pack_finance_list(ret);
