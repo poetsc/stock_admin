@@ -10,11 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@koa/cors": "^3.1.0",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
     "koa-helmet": "^5.2.0",
     "koa-router": "^9.4.0",
     "lodash": "^4.17.20",
+    "moment": "^2.27.0",
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.4",
     "xlsx": "^0.16.6"
