@@ -1,42 +1,34 @@
 'use strict'
 
 const Router = require('koa-router');
-const fs = require('fs');
 const path = require('path');
+const _ = require('lodash');
+const router_rule = require('../config/router');
 
-function addControllerFn(router, con) {
-    for (let url in con) {
-        let path;
-        if (url.startsWith('GET ')) {
-            path = url.substring(4);
-            router.get(path, con[url]);
-        } else if (url.startsWith('POST ')) {
-            path = url.substring(5);
-            router.post(path, con[url]);
-        } else if (url.startsWith('PUT ')) {
-            path = url.substring(4);
-            router.put(path, con[url]);
-        } else if (url.startsWith('DELETE ')) {
-            path = url.substring(7);
-            router.del(path, con[url]);
-        } else {
-            console.info(`invalid URL: ${url}`);
+function addControllers(router) {
+    router_rule.forEach(value => {
+        const [method, reqPath, controller, action] = value;
+        const routerMethod = method.toLowerCase();
+
+        if(!['get','post','put','delete'].includes(routerMethod)){
+            throw new Error(`controller|addControllers|router method unexpected: ${value}`);
         }
-    }
-}
+        if(!_.isString(reqPath) || _.isEmpty(reqPath)){
+            throw new Error(`controller|addControllers|router path unexpected: ${value}`);
+        }
+        if(!_.isString(controller) || _.isEmpty(controller)){
+            throw new Error(`controller|addControllers|router controller unexpected: ${value}`);
+        }
+        if(!_.isString(action) || _.isEmpty(action)){
+            throw new Error(`controller|addControllers|router action unexpected: ${value}`);
+        }
 
-function addControllers(router, dir) {
-    fs.readdirSync(`${dir || __dirname}`).filter((f) => {
-        return f.endsWith('.js') && f !== path.basename(__filename);
-    }).forEach((f) => {
-        console.info(`process controller: ${f}...`);
-        let con = require(`${dir || __dirname}/${f}`);
-        addControllerFn(router, con);
-    });
+        router[routerMethod](reqPath, require(path.join('../controller/', controller))[action]);
+    })
 }
 
 exports = module.exports = (dir) => {
     let router = Router();
-    addControllers(router, dir);
+    addControllers(router);
     return router.routes();
 }

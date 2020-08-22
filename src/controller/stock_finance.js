@@ -31,8 +31,4 @@ class StockFinance {
     }
 }
 
-let stockFinance = new StockFinance;
-
-exports = module.exports = {
-    'POST /stock/admin/finance/display': stockFinance.fn_finance_display,
-}
+exports = module.exports = new StockFinance();
